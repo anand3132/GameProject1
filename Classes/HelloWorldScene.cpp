@@ -18,6 +18,15 @@ Scene* HelloWorld::createScene()
     return scene;
 }
 
+HelloWorld::HelloWorld() {
+	mNinja = nullptr;
+}
+
+HelloWorld::~HelloWorld() {
+	if (mNinja) {
+		mNinja->release();
+	}
+}
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
@@ -42,7 +51,7 @@ bool HelloWorld::init()
                                            CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
     
     closeItem->setPosition(Vec2(origin.x + visibleSize.width - closeItem->getContentSize().width/2 ,
-                                origin.y + closeItem->getContentSize().height/2));
+                                origin.y +visibleSize.height-closeItem->getContentSize().height/2));
 
     // create menu, it's an autorelease object
     auto menu = Menu::create(closeItem, NULL);
@@ -63,17 +72,44 @@ bool HelloWorld::init()
 
     // add the label as a child to this layer
     this->addChild(label, 1);
+  
+	// atlas loading
+	cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile("sprites/HD/ninja-0.plist");
+	cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile("sprites/HD/ninja-1.plist");
+	cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile("sprites/HD/ninja-2.plist");
+	cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile("sprites/HD/ninja-3.plist");
 
-    // add "HelloWorld" splash screen"
-    auto sprite = Sprite::create("HelloWorld.png");
+	//auto spriteFrame = cocos2d::SpriteFrameCache::getInstance()->getSpriteFrameByName("Attack__003.png");
+	//auto ninja = cocos2d::Sprite::createWithSpriteFrame(spriteFrame);
+	//ninja->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+	//ninja->setScale(0.5f);
+	//addChild(ninja);
 
-    // position the sprite on the center of the screen
-    sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+	//auto moveTo = MoveTo::create(2, Vec2(50, 10));
+	//auto scaleTo = ScaleTo::create(2, 1.0f);
+	//auto sq = Sequence::create(moveTo, scaleTo, nullptr);
+	//ninja->runAction(moveTo);
+	//ninja->runAction(scaleTo);
+	
+	// ninja->runAction(sq);
 
-    // add the sprite as a child to this layer
-    this->addChild(sprite, 0);
-    
-    return true;
+	mNinja = Ninja::createNinja();
+	mNinja->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+	mNinja->setScale(0.2f);
+	mNinja->retain();	// We retain this so that we can remove this object from the scene with out getting destroyed.
+	this->addChild(mNinja);
+
+	//Keyboard events
+	//----------------------------
+	//Initializing and binding 
+	/*auto listener = EventListenerKeyboard::create();
+	listener->onKeyPressed = CC_CALLBACK_2(KeyboardTest::onKeyPressed, this);
+	listener->onKeyReleased = CC_CALLBACK_2(KeyboardTest::onKeyReleased, this);
+
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);*/
+
+
+   return true;
 }
 
 
@@ -90,6 +126,4 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
     
     //EventCustom customEndEvent("game_scene_close_event");
     //_eventDispatcher->dispatchEvent(&customEndEvent);
-    
-    
 }
