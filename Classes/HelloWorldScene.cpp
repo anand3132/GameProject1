@@ -59,6 +59,20 @@ bool HelloWorld::init()
     this->addChild(menu, 1);
 
     /////////////////////////////
+	//auto JoyStickItem = cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile("sprites/HD/lineLight-0.plist");
+	//auto ui = cocos2d::Sprite::createWithSpriteFrame(spriteFrame);
+
+	//auto JoyStickItem = MenuItemImage::create("lineLight00.png","lineLight02.png",
+	//	CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
+
+	//JoyStickItem->setPosition(Vec2(origin.x  - JoyStickItem->getContentSize().width / 2,
+	//	origin.y  - JoyStickItem->getContentSize().height / 2));
+
+	//// create menu, it's an autorelease object
+	//auto menu = Menu::create(JoyStickItem, NULL);
+	//menu->setPosition(Vec2::ZERO);
+	//this->addChild(menu, 1);
+	/////////////////////////////////////////////
     // 3. add your codes below...
 
     // add a label shows "Hello World"
