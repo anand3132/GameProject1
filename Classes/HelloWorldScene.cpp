@@ -30,8 +30,7 @@ HelloWorld::~HelloWorld() {
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
-    //////////////////////////////
-    // 1. super init first
+    
     if ( !Layer::init() )
     {
         return false;
@@ -40,89 +39,114 @@ bool HelloWorld::init()
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-    /////////////////////////////
-    // 2. add a menu item with "X" image, which is clicked to quit the program
-    //    you may modify it.
-
-    // add a "close" icon to exit the progress. it's an autorelease object
-    auto closeItem = MenuItemImage::create(
-                                           "CloseNormal.png",
-                                           "CloseSelected.png",
-                                           CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
-    
+	// close button
+    auto closeItem = MenuItemImage::create("CloseNormal.png","CloseSelected.png", 
+											CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
     closeItem->setPosition(Vec2(origin.x + visibleSize.width - closeItem->getContentSize().width/2 ,
-                                origin.y +visibleSize.height-closeItem->getContentSize().height/2));
-
-    // create menu, it's an autorelease object
+											origin.y +visibleSize.height-closeItem->getContentSize().height/2));
     auto menu = Menu::create(closeItem, NULL);
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
 
-    /////////////////////////////
-	//auto JoyStickItem = cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile("sprites/HD/lineLight-0.plist");
-	//auto ui = cocos2d::Sprite::createWithSpriteFrame(spriteFrame);
-
-	//auto JoyStickItem = MenuItemImage::create("lineLight00.png","lineLight02.png",
-	//	CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
-
-	//JoyStickItem->setPosition(Vec2(origin.x  - JoyStickItem->getContentSize().width / 2,
-	//	origin.y  - JoyStickItem->getContentSize().height / 2));
-
-	//// create menu, it's an autorelease object
-	//auto menu = Menu::create(JoyStickItem, NULL);
-	//menu->setPosition(Vec2::ZERO);
-	//this->addChild(menu, 1);
-	/////////////////////////////////////////////
-    // 3. add your codes below...
-
-    // add a label shows "Hello World"
-    // create and initialize a label
-    
-    auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
-    
-    // position the label on the center of the screen
+   //game label
+    auto label = Label::createWithTTF("Ninja", "fonts/Marker Felt.ttf", 24);
     label->setPosition(Vec2(origin.x + visibleSize.width/2,
                             origin.y + visibleSize.height - label->getContentSize().height));
-
-    // add the label as a child to this layer
     this->addChild(label, 1);
   
-	// atlas loading
+	// atlas/Sprite plist loading
 	cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile("sprites/HD/ninja-0.plist");
 	cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile("sprites/HD/ninja-1.plist");
 	cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile("sprites/HD/ninja-2.plist");
 	cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile("sprites/HD/ninja-3.plist");
+	cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile("sprites/HD/ninja-4.plist");
+	cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile("sprites/HD/BG-0.plist");
 
-	//auto spriteFrame = cocos2d::SpriteFrameCache::getInstance()->getSpriteFrameByName("Attack__003.png");
-	//auto ninja = cocos2d::Sprite::createWithSpriteFrame(spriteFrame);
-	//ninja->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-	//ninja->setScale(0.5f);
-	//addChild(ninja);
+	//Add background
+	CCSprite *bg = CCSprite::create("sprites/HD/BG-0.png");
+	bg->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+	bg->setScale(1.0f);
+	addChild(bg);
 
-	//auto moveTo = MoveTo::create(2, Vec2(50, 10));
-	//auto scaleTo = ScaleTo::create(2, 1.0f);
-	//auto sq = Sequence::create(moveTo, scaleTo, nullptr);
-	//ninja->runAction(moveTo);
-	//ninja->runAction(scaleTo);
-	
-	// ninja->runAction(sq);
-
+	//create ninja
 	mNinja = Ninja::createNinja();
-	mNinja->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+	mNinja->setPosition(Vec2(visibleSize.width / 6 + origin.x, visibleSize.height / 10 + origin.y));
 	mNinja->setScale(0.2f);
 	mNinja->retain();	// We retain this so that we can remove this object from the scene with out getting destroyed.
 	this->addChild(mNinja);
 
 	//Keyboard events
-	//----------------------------
-	//Initializing and binding 
-	/*auto listener = EventListenerKeyboard::create();
-	listener->onKeyPressed = CC_CALLBACK_2(KeyboardTest::onKeyPressed, this);
-	listener->onKeyReleased = CC_CALLBACK_2(KeyboardTest::onKeyReleased, this);
+	mKeyPressed = false;
+	auto eventListener = EventListenerKeyboard::create();
 
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);*/
+	eventListener->onKeyPressed = [this](EventKeyboard::KeyCode keyCode, Event* event) {
+		// Vec2 loc = event->getCurrentTarget()->getPosition();
+		switch (keyCode) {
+		case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+		case EventKeyboard::KeyCode::KEY_A:
+			if (!mKeyPressed) {
+				mNinja->playRun(Ninja::LEFT);
+			}
+			mKeyPressed = true;
+			// event->getCurrentTarget()->setPosition(loc.x -= 5, loc.y);
+			cocos2d::log("Ninja Moved A <<--");
+			break;
+		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+		case EventKeyboard::KeyCode::KEY_D:
+			if (!mKeyPressed) {
+				mNinja->playRun(Ninja::RIGHT);
+			}
+			// event->getCurrentTarget()->setPosition(++loc.x += 5, loc.y);
+			mKeyPressed = true;
+			cocos2d::log("Ninja Moved D -->>");
+			break;
+		case EventKeyboard::KeyCode::KEY_UP_ARROW:
+		case EventKeyboard::KeyCode::KEY_W:
+			mKeyPressed = true;
+			// event->getCurrentTarget()->setPosition(loc.x, ++loc.y);
+			break;
+		case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+		case EventKeyboard::KeyCode::KEY_S:
+			mKeyPressed = true;
+			// event->getCurrentTarget()->setPosition(loc.x, --loc.y);
+			break;
+		}
+	};
+
+	eventListener->onKeyReleased = [this](EventKeyboard::KeyCode keyCode, Event* event) {
+		// Vec2 loc = event->getCurrentTarget()->getPosition();
+		switch (keyCode) {
+		case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+		case EventKeyboard::KeyCode::KEY_A:
+			if (mKeyPressed) {
+				mNinja->playIdle();
+			}
+			mKeyPressed = false;
+			// event->getCurrentTarget()->setPosition(loc.x -= 5, loc.y);
+			break;
+		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+		case EventKeyboard::KeyCode::KEY_D:
+			if (mKeyPressed) {
+				mNinja->playIdle();
+			}
+			mKeyPressed = false;
+			// event->getCurrentTarget()->setPosition(++loc.x += 5, loc.y);
+			break;
+		case EventKeyboard::KeyCode::KEY_UP_ARROW:
+		case EventKeyboard::KeyCode::KEY_W:
+			mKeyPressed = false;
+			// event->getCurrentTarget()->setPosition(loc.x, ++loc.y);
+			break;
+		case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+		case EventKeyboard::KeyCode::KEY_S:
+			mKeyPressed = false;
+			// event->getCurrentTarget()->setPosition(loc.x, --loc.y);
+			break;
+		}
+	};
 
 
+	this->_eventDispatcher->addEventListenerWithSceneGraphPriority(eventListener, this);
    return true;
 }
 

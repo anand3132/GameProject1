@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>4.3.3</string>
         <key>fileName</key>
-        <string>/home/anand3132/2LocalRepository/GameProject1/ArtSource/ninja.tps</string>
+        <string>I:/1LocalRepoSTree/GameProject1/ArtSource/ninja.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -426,16 +426,26 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">Sprites/Ninja/Run__000.png</key>
-            <key type="filename">Sprites/Ninja/Run__001.png</key>
-            <key type="filename">Sprites/Ninja/Run__002.png</key>
-            <key type="filename">Sprites/Ninja/Run__003.png</key>
-            <key type="filename">Sprites/Ninja/Run__004.png</key>
-            <key type="filename">Sprites/Ninja/Run__005.png</key>
-            <key type="filename">Sprites/Ninja/Run__006.png</key>
-            <key type="filename">Sprites/Ninja/Run__007.png</key>
-            <key type="filename">Sprites/Ninja/Run__008.png</key>
-            <key type="filename">Sprites/Ninja/Run__009.png</key>
+            <key type="filename">Sprites/Ninja/RunL_002.png</key>
+            <key type="filename">Sprites/Ninja/RunL__000.png</key>
+            <key type="filename">Sprites/Ninja/RunL__001.png</key>
+            <key type="filename">Sprites/Ninja/RunL__003.png</key>
+            <key type="filename">Sprites/Ninja/RunL__004.png</key>
+            <key type="filename">Sprites/Ninja/RunL__005.png</key>
+            <key type="filename">Sprites/Ninja/RunL__006.png</key>
+            <key type="filename">Sprites/Ninja/RunL__007.png</key>
+            <key type="filename">Sprites/Ninja/RunL__008.png</key>
+            <key type="filename">Sprites/Ninja/RunL__009.png</key>
+            <key type="filename">Sprites/Ninja/RunR__000.png</key>
+            <key type="filename">Sprites/Ninja/RunR__001.png</key>
+            <key type="filename">Sprites/Ninja/RunR__002.png</key>
+            <key type="filename">Sprites/Ninja/RunR__003.png</key>
+            <key type="filename">Sprites/Ninja/RunR__004.png</key>
+            <key type="filename">Sprites/Ninja/RunR__005.png</key>
+            <key type="filename">Sprites/Ninja/RunR__006.png</key>
+            <key type="filename">Sprites/Ninja/RunR__007.png</key>
+            <key type="filename">Sprites/Ninja/RunR__008.png</key>
+            <key type="filename">Sprites/Ninja/RunR__009.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>

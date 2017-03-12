@@ -22,6 +22,12 @@ public:
 
 private:
 	Ninja* mNinja;
+
+	bool mKeyPressed;
+	int mcurrentLevel;
+	int mcurrentBackground;
+	std::string spriteFrameFormat;
+
 };
 
 #endif // __HELLOWORLD_SCENE_H__
