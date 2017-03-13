@@ -22,7 +22,7 @@ public:
 
 private:
 	Ninja* mNinja;
-
+	cocos2d::Sprite* mBG;
 	bool mKeyPressed;
 	int mcurrentLevel;
 	int mcurrentBackground;

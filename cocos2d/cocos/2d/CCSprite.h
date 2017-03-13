@@ -63,7 +63,7 @@ struct transformValues_;
  */
 
 /**
- * Sprite is a 2d image ( http://en.wikipedia.org/wiki/Sprite_(computer_graphics) ).
+ * Sprite is a 2d image ( http://en.wikipedia.org/wiki/Sprite_(computer_graphic)s ).
  *
  * Sprite can be created with an image, or with a sub-rectangle of an image.
  *

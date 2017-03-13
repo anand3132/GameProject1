@@ -85,12 +85,13 @@ void Ninja::update(float delta) {
 		if (mDirection == LEFT) {
 			setPosition(loc.x -= (speed), loc.y);
 		}
-		else {
+		else if (mDirection == RIGHT){
 			setPosition(loc.x += (speed), loc.y);
 		}
 		break;
 	}
 	case Ninja::JuMP:
+		
 		break;
 	case Ninja::CRAWL:
 		break;

@@ -20,6 +20,7 @@ Scene* HelloWorld::createScene()
 
 HelloWorld::HelloWorld() {
 	mNinja = nullptr;
+	mBG = nullptr;
 }
 
 HelloWorld::~HelloWorld() {
@@ -55,22 +56,23 @@ bool HelloWorld::init()
     this->addChild(label, 1);
   
 	// atlas/Sprite plist loading
-	cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile("sprites/HD/ninja-0.plist");
-	cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile("sprites/HD/ninja-1.plist");
-	cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile("sprites/HD/ninja-2.plist");
-	cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile("sprites/HD/ninja-3.plist");
-	cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile("sprites/HD/ninja-4.plist");
-	cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile("sprites/HD/BG-0.plist");
+	auto spriteCache = cocos2d::SpriteFrameCache::getInstance();
+	spriteCache->addSpriteFramesWithFile("sprites/HD/ninja-0.plist");
+	spriteCache->addSpriteFramesWithFile("sprites/HD/ninja-1.plist");
+	spriteCache->addSpriteFramesWithFile("sprites/HD/ninja-2.plist");
+	spriteCache->addSpriteFramesWithFile("sprites/HD/ninja-3.plist");
+	spriteCache->addSpriteFramesWithFile("sprites/HD/ninja-4.plist");
+	spriteCache->addSpriteFramesWithFile("sprites/HD/BG-0.plist");
 
 	//Add background
-	CCSprite *bg = CCSprite::create("sprites/HD/BG-0.png");
-	bg->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-	bg->setScale(1.0f);
-	addChild(bg);
+	mBG = Sprite::createWithSpriteFrame(spriteCache->getSpriteFrameByName("Background1.png"));
+	mBG->setPosition(Vec2(visibleSize.width/2  + origin.x, visibleSize.height/2  + origin.y));
+	mBG->setScale(2.0f);
+	addChild(mBG);
 
 	//create ninja
 	mNinja = Ninja::createNinja();
-	mNinja->setPosition(Vec2(visibleSize.width / 6 + origin.x, visibleSize.height / 10 + origin.y));
+	mNinja->setPosition(Vec2(visibleSize.width / 6 + origin.x, visibleSize.height / 7 + origin.y));
 	mNinja->setScale(0.2f);
 	mNinja->retain();	// We retain this so that we can remove this object from the scene with out getting destroyed.
 	this->addChild(mNinja);

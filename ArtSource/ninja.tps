@@ -237,16 +237,26 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">Sprites/Ninja/Attack__000.png</key>
-            <key type="filename">Sprites/Ninja/Attack__001.png</key>
-            <key type="filename">Sprites/Ninja/Attack__002.png</key>
-            <key type="filename">Sprites/Ninja/Attack__003.png</key>
-            <key type="filename">Sprites/Ninja/Attack__004.png</key>
-            <key type="filename">Sprites/Ninja/Attack__005.png</key>
-            <key type="filename">Sprites/Ninja/Attack__006.png</key>
-            <key type="filename">Sprites/Ninja/Attack__007.png</key>
-            <key type="filename">Sprites/Ninja/Attack__008.png</key>
-            <key type="filename">Sprites/Ninja/Attack__009.png</key>
+            <key type="filename">Sprites/Ninja/AttackL__000.png</key>
+            <key type="filename">Sprites/Ninja/AttackL__001.png</key>
+            <key type="filename">Sprites/Ninja/AttackL__002.png</key>
+            <key type="filename">Sprites/Ninja/AttackL__003.png</key>
+            <key type="filename">Sprites/Ninja/AttackL__004.png</key>
+            <key type="filename">Sprites/Ninja/AttackL__005.png</key>
+            <key type="filename">Sprites/Ninja/AttackL__006.png</key>
+            <key type="filename">Sprites/Ninja/AttackL__007.png</key>
+            <key type="filename">Sprites/Ninja/AttackL__008.png</key>
+            <key type="filename">Sprites/Ninja/AttackL__009.png</key>
+            <key type="filename">Sprites/Ninja/AttackR__000.png</key>
+            <key type="filename">Sprites/Ninja/AttackR__001.png</key>
+            <key type="filename">Sprites/Ninja/AttackR__002.png</key>
+            <key type="filename">Sprites/Ninja/AttackR__003.png</key>
+            <key type="filename">Sprites/Ninja/AttackR__004.png</key>
+            <key type="filename">Sprites/Ninja/AttackR__005.png</key>
+            <key type="filename">Sprites/Ninja/AttackR__006.png</key>
+            <key type="filename">Sprites/Ninja/AttackR__007.png</key>
+            <key type="filename">Sprites/Ninja/AttackR__008.png</key>
+            <key type="filename">Sprites/Ninja/AttackR__009.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -426,9 +436,9 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">Sprites/Ninja/RunL_002.png</key>
             <key type="filename">Sprites/Ninja/RunL__000.png</key>
             <key type="filename">Sprites/Ninja/RunL__001.png</key>
+            <key type="filename">Sprites/Ninja/RunL__002.png</key>
             <key type="filename">Sprites/Ninja/RunL__003.png</key>
             <key type="filename">Sprites/Ninja/RunL__004.png</key>
             <key type="filename">Sprites/Ninja/RunL__005.png</key>
