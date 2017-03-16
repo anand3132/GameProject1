@@ -1,9 +1,5 @@
 #pragma once
 
-#include "cocos2d.h"
-#include "Ninja.h"
-#include <stdarg.h>
-
 namespace NinjaUtil 
 {
 	std::string formatString(const char* format, ...);
@@ -15,7 +11,8 @@ public:
 	enum NINJA_STATE {
 		IDLE,
 		RUN,
-		JuMP,
+		JUMP,
+		JUMPATTACK,
 		CRAWL,
 		ATTACK,
 		DIE
@@ -35,12 +32,13 @@ public:
     bool initNinja();
 	void update(float delta);
 
-	void playIdle();
+	void playIdle(NINJA_DIRECTION dir);
 	void playAttack(NINJA_DIRECTION dir);
+	void playJump(NINJA_DIRECTION dir);
 	void playRun(NINJA_DIRECTION dir);
-
+	void jumpAttack(NINJA_DIRECTION dir);
 	void SetNinjaDirection(NINJA_DIRECTION dir);
-
+	//NINJA_DIRECTION GetNinjaDirection();
 protected:
 	void OnStateChange(NINJA_STATE prevState, NINJA_STATE curState);
 	void OnDirectionChange(NINJA_DIRECTION prevDir, NINJA_DIRECTION curDir);
@@ -55,4 +53,5 @@ private:
 	float mElapsedSinceLastFrame;
 	NINJA_STATE mState;
 	NINJA_DIRECTION mDirection;
+
 };

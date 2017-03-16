@@ -1,6 +1,5 @@
+#include "GameEngine.h"
 #include "AppDelegate.h"
-#include "HelloWorldScene.h"
-
 USING_NS_CC;
 
 //static cocos2d::Size designResolutionSize = cocos2d::Size(480, 320); original cocos2d set
@@ -42,7 +41,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
         glview = GLViewImpl::createWithRect("GameProject1", cocos2d::Rect(0, 0, designResolutionSize.width, designResolutionSize.height));
 #else
-        glview = GLViewImpl::create("TestProject2");
+        glview = GLViewImpl::create("GameProject1");
 #endif
         director->setOpenGLView(glview);
     }
@@ -75,7 +74,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
     // create a scene. it's an autorelease object
-    auto scene = HelloWorld::createScene();
+	auto scene = HelloWorld::createScene();
 
     // run
     director->runWithScene(scene);

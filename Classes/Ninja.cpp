@@ -1,10 +1,11 @@
+#include "GameEngine.h"
 #include "Ninja.h"
 
 #define FRAMETIME 0.1f
 
 USING_NS_CC;
 
-namespace NinjaUtil 
+namespace NinjaUtil
 {
 	std::string formatString(const char* format, ...)
 	{
@@ -51,7 +52,7 @@ bool Ninja::initNinja()
 
 	//setCurrentAnimationFrame(0);
 	SetNinjaDirection(RIGHT);
-	playIdle();
+	playIdle(NINJA_DIRECTION::RIGHT);
 
 	scheduleUpdate();
     return true;
@@ -90,10 +91,25 @@ void Ninja::update(float delta) {
 		}
 		break;
 	}
-	case Ninja::JuMP:
-		
+	case Ninja::JUMP: {
+		float speed = 70.0f * delta;
+		if (mDirection == LEFT) {
+			setPosition(loc.x -= (speed), loc.y);
+		}
+		else if (mDirection == RIGHT) {
+			setPosition(loc.x += (speed), loc.y);
+		}
+	}
 		break;
-	case Ninja::CRAWL:
+	case Ninja::CRAWL: {
+		float speed = 70.0f * delta;
+		if (mDirection == LEFT) {
+			setPosition(loc.x , loc.y -= (speed));
+		}
+		else if (mDirection == RIGHT) {
+			setPosition(loc.x , loc.y += (speed));
+		}
+	}
 		break;
 	case Ninja::ATTACK:
 		break;
@@ -104,17 +120,40 @@ void Ninja::update(float delta) {
 	}
 }
 
-void Ninja::playIdle() {
+void Ninja::playIdle(NINJA_DIRECTION dir) {
 	spriteFrameFormat = "Idle__%03d.png";
+	if (dir == NINJA_DIRECTION::RIGHT)
+		setFlipY(false);
+	else if (dir == NINJA_DIRECTION::LEFT)
+		setFlipY(true);
 	mFrameCount = 10;
 	mCurrentFrame = 0;
 	mElapsedSinceLastFrame = 0.0f;
 	setCurrentAnimationFrame(mCurrentFrame);
 	SetState(IDLE);
 }
+void Ninja::playRun(NINJA_DIRECTION dir) {
+	spriteFrameFormat = "Run__%03d.png";
 
+	if (dir == NINJA_DIRECTION::RIGHT)
+		setFlippedX(false);
+	else if (dir == NINJA_DIRECTION::LEFT)
+		setFlippedX(true);
+
+	mFrameCount = 10;
+	mCurrentFrame = 0;
+	mElapsedSinceLastFrame = 0.0f;
+	setCurrentAnimationFrame(mCurrentFrame);
+	SetState(RUN);
+	SetNinjaDirection(dir);
+}
 void Ninja::playAttack(NINJA_DIRECTION dir) {
 	spriteFrameFormat = "Attack__%03d.png";
+
+	if (dir == NINJA_DIRECTION::RIGHT)
+		setFlippedX(false);
+	else if (dir == NINJA_DIRECTION::LEFT)
+		setFlippedX(true);
 	mFrameCount = 10;
 	mCurrentFrame = 0;
 	mElapsedSinceLastFrame = 0.0f;
@@ -123,17 +162,37 @@ void Ninja::playAttack(NINJA_DIRECTION dir) {
 	SetNinjaDirection(dir);
 }
 
-void Ninja::playRun(NINJA_DIRECTION dir) {
-	if (dir==NINJA_DIRECTION::LEFT)
-		spriteFrameFormat = "RunL__%03d.png";
-	else if (dir == NINJA_DIRECTION::RIGHT)
-		spriteFrameFormat = "RunR__%03d.png";
+void Ninja::playJump(NINJA_DIRECTION dir)
+{
+	spriteFrameFormat = "Jump__%03d.png";
 
+	if (dir == NINJA_DIRECTION::RIGHT)
+		setFlippedX(false);
+	else if (dir == NINJA_DIRECTION::LEFT)
+		setFlippedX(true);
 	mFrameCount = 10;
 	mCurrentFrame = 0;
 	mElapsedSinceLastFrame = 0.0f;
 	setCurrentAnimationFrame(mCurrentFrame);
-	SetState(RUN);
+	SetState(JUMP);
+	SetNinjaDirection(dir);
+}
+
+
+
+void Ninja::jumpAttack(NINJA_DIRECTION dir)
+{
+	spriteFrameFormat = "JumpAttack__%03d.png";
+
+	if (dir == NINJA_DIRECTION::RIGHT)
+		setFlippedX(false);
+	else if (dir == NINJA_DIRECTION::LEFT)
+		setFlippedX(true);
+	mFrameCount = 10;
+	mCurrentFrame = 0;
+	mElapsedSinceLastFrame = 0.0f;
+	setCurrentAnimationFrame(mCurrentFrame);
+	SetState(JUMPATTACK);
 	SetNinjaDirection(dir);
 }
 

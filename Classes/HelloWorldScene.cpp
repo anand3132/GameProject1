@@ -1,6 +1,5 @@
+#include "GameEngine.h"
 #include "HelloWorldScene.h"
-#include "SimpleAudioEngine.h"
-
 USING_NS_CC;
 
 Scene* HelloWorld::createScene()
@@ -61,7 +60,6 @@ bool HelloWorld::init()
 	spriteCache->addSpriteFramesWithFile("sprites/HD/ninja-1.plist");
 	spriteCache->addSpriteFramesWithFile("sprites/HD/ninja-2.plist");
 	spriteCache->addSpriteFramesWithFile("sprites/HD/ninja-3.plist");
-	spriteCache->addSpriteFramesWithFile("sprites/HD/ninja-4.plist");
 	spriteCache->addSpriteFramesWithFile("sprites/HD/BG-0.plist");
 
 	//Add background
@@ -121,7 +119,7 @@ bool HelloWorld::init()
 		case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
 		case EventKeyboard::KeyCode::KEY_A:
 			if (mKeyPressed) {
-				mNinja->playIdle();
+				mNinja->playIdle(Ninja::NINJA_DIRECTION::LEFT);
 			}
 			mKeyPressed = false;
 			// event->getCurrentTarget()->setPosition(loc.x -= 5, loc.y);
@@ -129,7 +127,7 @@ bool HelloWorld::init()
 		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
 		case EventKeyboard::KeyCode::KEY_D:
 			if (mKeyPressed) {
-				mNinja->playIdle();
+				mNinja->playIdle(Ninja::NINJA_DIRECTION::RIGHT);
 			}
 			mKeyPressed = false;
 			// event->getCurrentTarget()->setPosition(++loc.x += 5, loc.y);

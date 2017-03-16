@@ -22,6 +22,7 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Ninja.cpp" />
+    <ClCompile Include="..\Classes\MainMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -34,6 +35,8 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Ninja.h" />
+    <ClInclude Include="..\Classes\MainMenu.h" />
+    <ClInclude Include="..\Classes\GameEngine.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
