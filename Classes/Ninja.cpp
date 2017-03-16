@@ -69,6 +69,7 @@ void  Ninja::setCurrentAnimationFrame(int frame) {
 
 void Ninja::update(float delta) {
 	mElapsedSinceLastFrame += delta;
+	auto loc = getPosition();
 
 	if (mElapsedSinceLastFrame >= FRAMETIME) {
 		mElapsedSinceLastFrame = 0.0f;
@@ -76,56 +77,59 @@ void Ninja::update(float delta) {
 		setCurrentAnimationFrame(mCurrentFrame);
 	}
 
-	auto loc = getPosition();
-	switch (mState)
-	{
+	switch (mState)	{
 	case Ninja::IDLE:
+		if (mDirection == LEFT) 
+			setFlippedX(true);
+		else if (mDirection == RIGHT)
+			setFlippedX(false);
 		break;
 	case Ninja::RUN: {
 		float speed = 70.0f * delta;
 		if (mDirection == LEFT) {
+			setFlippedX(true);
 			setPosition(loc.x -= (speed), loc.y);
 		}
-		else if (mDirection == RIGHT){
+		else if (mDirection == RIGHT) {
+			setFlippedX(false);
 			setPosition(loc.x += (speed), loc.y);
 		}
-		break;
 	}
+		break;
 	case Ninja::JUMP: {
 		float speed = 70.0f * delta;
 		if (mDirection == LEFT) {
+			setFlippedX(true);
 			setPosition(loc.x -= (speed), loc.y);
 		}
 		else if (mDirection == RIGHT) {
+			setFlippedX(false);
 			setPosition(loc.x += (speed), loc.y);
 		}
 	}
-		break;
+					 break;
 	case Ninja::CRAWL: {
 		float speed = 70.0f * delta;
-		if (mDirection == LEFT) {
-			setPosition(loc.x , loc.y -= (speed));
-		}
-		else if (mDirection == RIGHT) {
-			setPosition(loc.x , loc.y += (speed));
-		}
+		if (mDirection == UP) { setPosition(loc.x, loc.y -= (speed)); }
+		else if (mDirection == DOWN) { setPosition(loc.x, loc.y += (speed)); }
 	}
 		break;
-	case Ninja::ATTACK:
+	case Ninja::ATTACK:{
+		if (mDirection == LEFT)
+			setFlippedX(true);
+		else if (mDirection == RIGHT)
+			setFlippedX(false);
+	}
 		break;
 	case Ninja::DIE:
 		break;
 	default:
 		break;
-	}
+	}//switch
 }
 
 void Ninja::playIdle(NINJA_DIRECTION dir) {
 	spriteFrameFormat = "Idle__%03d.png";
-	if (dir == NINJA_DIRECTION::RIGHT)
-		setFlipY(false);
-	else if (dir == NINJA_DIRECTION::LEFT)
-		setFlipY(true);
 	mFrameCount = 10;
 	mCurrentFrame = 0;
 	mElapsedSinceLastFrame = 0.0f;
@@ -134,12 +138,6 @@ void Ninja::playIdle(NINJA_DIRECTION dir) {
 }
 void Ninja::playRun(NINJA_DIRECTION dir) {
 	spriteFrameFormat = "Run__%03d.png";
-
-	if (dir == NINJA_DIRECTION::RIGHT)
-		setFlippedX(false);
-	else if (dir == NINJA_DIRECTION::LEFT)
-		setFlippedX(true);
-
 	mFrameCount = 10;
 	mCurrentFrame = 0;
 	mElapsedSinceLastFrame = 0.0f;
@@ -147,53 +145,39 @@ void Ninja::playRun(NINJA_DIRECTION dir) {
 	SetState(RUN);
 	SetNinjaDirection(dir);
 }
-void Ninja::playAttack(NINJA_DIRECTION dir) {
+void Ninja::playAttack() {
 	spriteFrameFormat = "Attack__%03d.png";
-
-	if (dir == NINJA_DIRECTION::RIGHT)
-		setFlippedX(false);
-	else if (dir == NINJA_DIRECTION::LEFT)
-		setFlippedX(true);
 	mFrameCount = 10;
 	mCurrentFrame = 0;
 	mElapsedSinceLastFrame = 0.0f;
 	setCurrentAnimationFrame(mCurrentFrame);
 	SetState(ATTACK);
-	SetNinjaDirection(dir);
+}
+void Ninja::playCrawl() {
+	spriteFrameFormat = "CRAWL__%03d.png";
+	mFrameCount = 10;
+	mCurrentFrame = 0;
+	mElapsedSinceLastFrame = 0.0f;
+	setCurrentAnimationFrame(mCurrentFrame);
+	SetState(RUN);
 }
 
-void Ninja::playJump(NINJA_DIRECTION dir)
-{
+void Ninja::playJump() {
 	spriteFrameFormat = "Jump__%03d.png";
-
-	if (dir == NINJA_DIRECTION::RIGHT)
-		setFlippedX(false);
-	else if (dir == NINJA_DIRECTION::LEFT)
-		setFlippedX(true);
 	mFrameCount = 10;
 	mCurrentFrame = 0;
 	mElapsedSinceLastFrame = 0.0f;
 	setCurrentAnimationFrame(mCurrentFrame);
 	SetState(JUMP);
-	SetNinjaDirection(dir);
 }
 
-
-
-void Ninja::jumpAttack(NINJA_DIRECTION dir)
-{
+void Ninja::jumpAttack() {
 	spriteFrameFormat = "JumpAttack__%03d.png";
-
-	if (dir == NINJA_DIRECTION::RIGHT)
-		setFlippedX(false);
-	else if (dir == NINJA_DIRECTION::LEFT)
-		setFlippedX(true);
 	mFrameCount = 10;
 	mCurrentFrame = 0;
 	mElapsedSinceLastFrame = 0.0f;
 	setCurrentAnimationFrame(mCurrentFrame);
 	SetState(JUMPATTACK);
-	SetNinjaDirection(dir);
 }
 
 void Ninja::SetState(NINJA_STATE state) {

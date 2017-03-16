@@ -80,35 +80,40 @@ bool HelloWorld::init()
 	auto eventListener = EventListenerKeyboard::create();
 
 	eventListener->onKeyPressed = [this](EventKeyboard::KeyCode keyCode, Event* event) {
-		// Vec2 loc = event->getCurrentTarget()->getPosition();
 		switch (keyCode) {
 		case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
 		case EventKeyboard::KeyCode::KEY_A:
-			if (!mKeyPressed) {
-				mNinja->playRun(Ninja::LEFT);
-			}
+			if (!mKeyPressed) {	mNinja->playRun(Ninja::LEFT);	}
 			mKeyPressed = true;
-			// event->getCurrentTarget()->setPosition(loc.x -= 5, loc.y);
-			cocos2d::log("Ninja Moved A <<--");
 			break;
+
 		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
 		case EventKeyboard::KeyCode::KEY_D:
-			if (!mKeyPressed) {
-				mNinja->playRun(Ninja::RIGHT);
-			}
-			// event->getCurrentTarget()->setPosition(++loc.x += 5, loc.y);
+			if (!mKeyPressed) {	mNinja->playRun(Ninja::RIGHT);	}
 			mKeyPressed = true;
-			cocos2d::log("Ninja Moved D -->>");
 			break;
+
 		case EventKeyboard::KeyCode::KEY_UP_ARROW:
 		case EventKeyboard::KeyCode::KEY_W:
+			if (mKeyPressed) { mNinja->playCrawl(); }
 			mKeyPressed = true;
-			// event->getCurrentTarget()->setPosition(loc.x, ++loc.y);
 			break;
+
 		case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
 		case EventKeyboard::KeyCode::KEY_S:
+			if (mKeyPressed) { mNinja->playCrawl(); }
 			mKeyPressed = true;
-			// event->getCurrentTarget()->setPosition(loc.x, --loc.y);
+			break;
+
+		case EventKeyboard::KeyCode::KEY_SPACE:
+			if (!mKeyPressed) { mNinja->playJump(); }
+			mKeyPressed = true;
+			break;
+
+		case EventKeyboard::KeyCode::KEY_LEFT_CTRL:
+		case EventKeyboard::KeyCode::KEY_RIGHT_CTRL:
+			if (!mKeyPressed) {	mNinja->playAttack();	}
+			mKeyPressed = true;
 			break;
 		}
 	};
@@ -118,34 +123,35 @@ bool HelloWorld::init()
 		switch (keyCode) {
 		case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
 		case EventKeyboard::KeyCode::KEY_A:
-			if (mKeyPressed) {
-				mNinja->playIdle(Ninja::NINJA_DIRECTION::LEFT);
-			}
+			if (mKeyPressed) {	mNinja->playIdle(Ninja::NINJA_DIRECTION::LEFT);			}
 			mKeyPressed = false;
-			// event->getCurrentTarget()->setPosition(loc.x -= 5, loc.y);
 			break;
 		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
 		case EventKeyboard::KeyCode::KEY_D:
-			if (mKeyPressed) {
-				mNinja->playIdle(Ninja::NINJA_DIRECTION::RIGHT);
-			}
+			if (mKeyPressed) {	mNinja->playIdle(Ninja::NINJA_DIRECTION::RIGHT);		}
 			mKeyPressed = false;
-			// event->getCurrentTarget()->setPosition(++loc.x += 5, loc.y);
 			break;
 		case EventKeyboard::KeyCode::KEY_UP_ARROW:
 		case EventKeyboard::KeyCode::KEY_W:
+			if (mKeyPressed) { mNinja->playIdle(Ninja::NINJA_DIRECTION::RIGHT); }
 			mKeyPressed = false;
-			// event->getCurrentTarget()->setPosition(loc.x, ++loc.y);
 			break;
 		case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
 		case EventKeyboard::KeyCode::KEY_S:
+			if (mKeyPressed) { mNinja->playIdle(Ninja::NINJA_DIRECTION::RIGHT); }
 			mKeyPressed = false;
-			// event->getCurrentTarget()->setPosition(loc.x, --loc.y);
+			break;
+		case EventKeyboard::KeyCode::KEY_SPACE: 
+			if (mKeyPressed) { mNinja->playIdle(Ninja::NINJA_DIRECTION::LEFT); }
+			mKeyPressed = false;
+			break;
+		case EventKeyboard::KeyCode::KEY_LEFT_CTRL:
+		case EventKeyboard::KeyCode::KEY_RIGHT_CTRL:
+			if (mKeyPressed) { mNinja->playIdle(Ninja::NINJA_DIRECTION::LEFT); }
+			mKeyPressed = false;
 			break;
 		}
 	};
-
-
 	this->_eventDispatcher->addEventListenerWithSceneGraphPriority(eventListener, this);
    return true;
 }

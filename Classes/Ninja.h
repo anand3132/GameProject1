@@ -33,10 +33,11 @@ public:
 	void update(float delta);
 
 	void playIdle(NINJA_DIRECTION dir);
-	void playAttack(NINJA_DIRECTION dir);
-	void playJump(NINJA_DIRECTION dir);
 	void playRun(NINJA_DIRECTION dir);
-	void jumpAttack(NINJA_DIRECTION dir);
+	void playAttack();
+	void playCrawl();
+	void playJump();
+	void jumpAttack();
 	void SetNinjaDirection(NINJA_DIRECTION dir);
 	//NINJA_DIRECTION GetNinjaDirection();
 protected:

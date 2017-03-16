@@ -1,7 +1,6 @@
 #include "GameEngine.h"
 #include "MainMenu.h"
 USING_NS_CC;
-
 MainMenu::MainMenu()
 {
 	mSplash=nullptr;
@@ -64,8 +63,6 @@ bool MainMenu::init()
 
 	//// trigger when you push down
 	//listener1->onTouchBegan = [](Touch* touch, Event* event) {
-	//	if()
-	//	{ }
 	//	// your code
 	//	return true; // if you are consuming it
 	//};
