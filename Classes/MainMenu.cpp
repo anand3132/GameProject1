@@ -39,32 +39,48 @@ bool MainMenu::init()
 	menu->setPosition(Vec2::ZERO);
 	this->addChild(menu, 1);
 
-	auto spriteCache = cocos2d::SpriteFrameCache::getInstance();
 	//Add sprite plist
+	auto spriteCache = cocos2d::SpriteFrameCache::getInstance();
 	spriteCache->addSpriteFramesWithFile("sprites/HD/UI-0.plist");
-
 	mSplash = Sprite::createWithSpriteFrame(spriteCache->getSpriteFrameByName("Splash_screen.png"));
 
 	mSplash->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-	//mSplash->setScale(1.0f);
 	addChild(mSplash);
 
+	//PlayButton
 	auto uButton = ui::Button::create();
 	uButton->setTouchEnabled(true);
 
 	uButton->loadTextures("buttons/normal/play.png", "buttons/click/play.png", "buttons/hover/play.png", ui::TextureResType::PLIST);
 	uButton->setPosition(Point(visibleSize.width / 2, visibleSize.height / 2) + Point(0, -50));
-	//uButton->addTouchEventListener(this, toucheventselector(MainMenu::touchEvent));
-	//uButton->addTouchEventListener(CC_CALLBACK_2(MainMenu::menuTouchEvent, this));
 	addChild(uButton);
 
+	uButton->addTouchEventListener([this](Ref* sender, cocos2d::ui::Widget::TouchEventType type){
+		switch (type)
+		{
+		case cocos2d::ui::Widget::TouchEventType::BEGAN:
+			break;
+		case cocos2d::ui::Widget::TouchEventType::MOVED:
+			break;
+		case cocos2d::ui::Widget::TouchEventType::ENDED:
+		{
+			cocos2d::log("Button pressed");
+			Director::getInstance()->replaceScene(HelloWorld::createScene());
+		}
+			break;
+		case cocos2d::ui::Widget::TouchEventType::CANCELED:
+			break;
+		default:
+			break;
+		}
+	});
 
 	//auto listener1 = EventListenerTouchOneByOne::create();
 
 	//// trigger when you push down
 	//listener1->onTouchBegan = [](Touch* touch, Event* event) {
-	//	// your code
-	//	return true; // if you are consuming it
+	//// your code
+	//return true; // if you are consuming it
 	//};
 
 	//// trigger when moving touch
@@ -78,7 +94,7 @@ bool MainMenu::init()
 	//};
 
 	//// Add listener
-	//_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1, this);
+	//this->_eventDispatcher->addEventListenerWithSceneGraphPriority(listener1, this);
 	////}
 
 

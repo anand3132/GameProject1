@@ -259,28 +259,6 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">Sprites/Ninja/Climb_000.png</key>
-            <key type="filename">Sprites/Ninja/Climb_001.png</key>
-            <key type="filename">Sprites/Ninja/Climb_002.png</key>
-            <key type="filename">Sprites/Ninja/Climb_003.png</key>
-            <key type="filename">Sprites/Ninja/Climb_004.png</key>
-            <key type="filename">Sprites/Ninja/Climb_005.png</key>
-            <key type="filename">Sprites/Ninja/Climb_006.png</key>
-            <key type="filename">Sprites/Ninja/Climb_007.png</key>
-            <key type="filename">Sprites/Ninja/Climb_008.png</key>
-            <key type="filename">Sprites/Ninja/Climb_009.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>71,116,141,232</rect>
-                <key>scale9Paddings</key>
-                <rect>71,116,141,232</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
             <key type="filename">Sprites/Ninja/Dead__000.png</key>
             <key type="filename">Sprites/Ninja/Dead__001.png</key>
             <key type="filename">Sprites/Ninja/Dead__002.png</key>
@@ -300,28 +278,6 @@
                 <rect>121,125,241,249</rect>
                 <key>scale9Paddings</key>
                 <rect>121,125,241,249</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">Sprites/Ninja/Glide_000.png</key>
-            <key type="filename">Sprites/Ninja/Glide_001.png</key>
-            <key type="filename">Sprites/Ninja/Glide_002.png</key>
-            <key type="filename">Sprites/Ninja/Glide_003.png</key>
-            <key type="filename">Sprites/Ninja/Glide_004.png</key>
-            <key type="filename">Sprites/Ninja/Glide_005.png</key>
-            <key type="filename">Sprites/Ninja/Glide_006.png</key>
-            <key type="filename">Sprites/Ninja/Glide_007.png</key>
-            <key type="filename">Sprites/Ninja/Glide_008.png</key>
-            <key type="filename">Sprites/Ninja/Glide_009.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>111,114,222,227</rect>
-                <key>scale9Paddings</key>
-                <rect>111,114,222,227</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
