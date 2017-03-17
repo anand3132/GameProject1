@@ -28,10 +28,10 @@ Ninja::~Ninja()
 	cocos2d::log("Ninja destroyed");
 }
 
-Ninja* Ninja::createNinja()
+Ninja* Ninja::createNinja(float scale, cocos2d::Vec2 pos)
 {
 	Ninja *ninja = new (std::nothrow) Ninja();
-	if (ninja && ninja->initNinja()) 
+	if (ninja && ninja->initNinja(scale, pos)) 
 	{
 		ninja->autorelease();
 		return ninja;
@@ -41,18 +41,20 @@ Ninja* Ninja::createNinja()
 }
 
 // on "init" you need to initialize your instance
-bool Ninja::initNinja() 
+bool Ninja::initNinja(float scale, cocos2d::Vec2 pos)
 {
 	Sprite::init();
 
-	//mCurrentFrame = 0;
-	//mElapsedSinceLastFrame = 0.0f;
-	//mFrameCount = 10;
-	//this->spriteFrameFormat = spriteFrameFormat;
+	mCurrentFrame = 0;
+	mElapsedSinceLastFrame = 0.0f;
 
 	//setCurrentAnimationFrame(0);
+	setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
 	SetNinjaDirection(RIGHT);
 	playIdle(NINJA_DIRECTION::RIGHT);
+
+	setScale(scale);
+	setPosition(pos);
 
 	scheduleUpdate();
     return true;
@@ -64,7 +66,7 @@ void  Ninja::setCurrentAnimationFrame(int frame) {
 	mCurrentFrame = frame;
 	auto modifiedPath = NinjaUtil::formatString(spriteFrameFormat.c_str(), frame);
 	auto spriteFrame = cocos2d::SpriteFrameCache::getInstance()->getSpriteFrameByName(modifiedPath);
-	initWithSpriteFrame(spriteFrame);
+	setSpriteFrame(spriteFrame);
 }
 
 void Ninja::update(float delta) {
@@ -78,12 +80,13 @@ void Ninja::update(float delta) {
 	}
 
 	switch (mState)	{
-	case Ninja::IDLE:
-		if (mDirection == LEFT) 
+	case Ninja::IDLE: {
+		if (mDirection == LEFT)
 			setFlippedX(true);
 		else if (mDirection == RIGHT)
 			setFlippedX(false);
-		break;
+	break;
+	}
 	case Ninja::RUN: {
 		float speed = 70.0f * delta;
 		if (mDirection == LEFT) {
@@ -94,8 +97,8 @@ void Ninja::update(float delta) {
 			setFlippedX(false);
 			setPosition(loc.x += (speed), loc.y);
 		}
-	}
 		break;
+	}
 	case Ninja::JUMP: {
 		float speed = 70.0f * delta;
 		if (mDirection == LEFT) {
@@ -106,23 +109,30 @@ void Ninja::update(float delta) {
 			setFlippedX(false);
 			setPosition(loc.x += (speed), loc.y);
 		}
+		break;
 	}
-					 break;
 	case Ninja::CRAWL: {
 		float speed = 70.0f * delta;
-		if (mDirection == UP) { setPosition(loc.x, loc.y -= (speed)); }
-		else if (mDirection == DOWN) { setPosition(loc.x, loc.y += (speed)); }
-	}
+		if (mDirection == UP) { 
+			setPosition(loc.x, loc.y -= (speed)); 
+		}
+		else if (mDirection == DOWN) {
+			setPosition(loc.x, loc.y += (speed)); 
+		}
 		break;
-	case Ninja::ATTACK:{
-		if (mDirection == LEFT)
+	}
+	case Ninja::ATTACK: {
+		if (mDirection == LEFT) {
 			setFlippedX(true);
-		else if (mDirection == RIGHT)
+		}
+		else if (mDirection == RIGHT) {
 			setFlippedX(false);
+		}
+		break;
 	}
+	case Ninja::DIE: {
 		break;
-	case Ninja::DIE:
-		break;
+	}
 	default:
 		break;
 	}//switch

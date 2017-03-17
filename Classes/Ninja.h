@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cocos2d.h>
+
 namespace NinjaUtil 
 {
 	std::string formatString(const char* format, ...);
@@ -24,12 +26,12 @@ public:
 		UP,
 		DOWN
 	};
-    static Ninja* createNinja();
+    static Ninja* createNinja(float scale = 1.0f, cocos2d::Vec2 pos = cocos2d::Vec2::ZERO);
 
 	Ninja();
 	virtual ~Ninja();
 
-    bool initNinja();
+    bool initNinja(float scale, cocos2d::Vec2 pos);
 	void update(float delta);
 
 	void playIdle(NINJA_DIRECTION dir);
