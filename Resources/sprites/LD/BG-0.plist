@@ -17,7 +17,7 @@
                 <key>textureRect</key>
                 <string>{{1,1},{400,89}}</string>
                 <key>textureRotated</key>
-                <false/>
+                <true/>
             </dict>
             <key>Background2.png</key>
             <dict>
@@ -30,7 +30,97 @@
                 <key>spriteSourceSize</key>
                 <string>{400,89}</string>
                 <key>textureRect</key>
-                <string>{{403,1},{400,89}}</string>
+                <string>{{1,403},{400,89}}</string>
+                <key>textureRotated</key>
+                <true/>
+            </dict>
+            <key>Coin1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{8,8}</string>
+                <key>spriteSourceSize</key>
+                <string>{8,8}</string>
+                <key>textureRect</key>
+                <string>{{1,805},{8,8}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>Coin2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{8,8}</string>
+                <key>spriteSourceSize</key>
+                <string>{8,8}</string>
+                <key>textureRect</key>
+                <string>{{11,805},{8,8}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>Coin3.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{8,8}</string>
+                <key>spriteSourceSize</key>
+                <string>{8,8}</string>
+                <key>textureRect</key>
+                <string>{{21,805},{8,8}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>Coin4.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{-1,0}</string>
+                <key>spriteSize</key>
+                <string>{6,8}</string>
+                <key>spriteSourceSize</key>
+                <string>{8,8}</string>
+                <key>textureRect</key>
+                <string>{{51,805},{6,8}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>Coin5.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{8,8}</string>
+                <key>spriteSourceSize</key>
+                <string>{8,8}</string>
+                <key>textureRect</key>
+                <string>{{31,805},{8,8}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>Coin6.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{8,8}</string>
+                <key>spriteSourceSize</key>
+                <string>{8,8}</string>
+                <key>textureRect</key>
+                <string>{{41,805},{8,8}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -46,9 +136,9 @@
             <key>realTextureFileName</key>
             <string>BG-0.png</string>
             <key>size</key>
-            <string>{804,91}</string>
+            <string>{91,814}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:9207666cef9bd5a8a21cd7124e487603:d2bbc40f1feac6c5aa5e0c540415b2dd:c5b11d209a8338dfec7e6b8d476b65d9$</string>
+            <string>$TexturePacker:SmartUpdate:a19b938ed2852fbfc0a76956b4d71f24:639d9a054681ed3d88e85d347cae2653:c5b11d209a8338dfec7e6b8d476b65d9$</string>
             <key>textureFileName</key>
             <string>BG-0.png</string>
         </dict>

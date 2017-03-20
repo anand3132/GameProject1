@@ -1,4 +1,4 @@
-#include "GameEngine.h"
+#include "GameInclude.h"
 #include "Ninja.h"
 
 #define FRAMETIME 0.1f
@@ -43,14 +43,17 @@ Ninja* Ninja::createNinja(float scale, cocos2d::Vec2 pos)
 // on "init" you need to initialize your instance
 bool Ninja::initNinja(float scale, cocos2d::Vec2 pos)
 {
-	Sprite::init();
+	if (!Sprite::init())
+	{
+		return false;
+	}
 
 	mCurrentFrame = 0;
 	mElapsedSinceLastFrame = 0.0f;
 
 	//setCurrentAnimationFrame(0);
 	setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
-	SetNinjaDirection(RIGHT);
+	setNinjaDirection(RIGHT);
 	playIdle(NINJA_DIRECTION::RIGHT);
 
 	setScale(scale);
@@ -100,7 +103,7 @@ void Ninja::update(float delta) {
 		break;
 	}
 	case Ninja::JUMP: {
-		float speed = 70.0f * delta;
+ 		float speed = 70.0f * delta;
 		if (mDirection == LEFT) {
 			setFlippedX(true);
 			setPosition(loc.x -= (speed), loc.y);
@@ -153,7 +156,7 @@ void Ninja::playRun(NINJA_DIRECTION dir) {
 	mElapsedSinceLastFrame = 0.0f;
 	setCurrentAnimationFrame(mCurrentFrame);
 	SetState(RUN);
-	SetNinjaDirection(dir);
+	setNinjaDirection(dir);
 }
 void Ninja::playAttack() {
 	spriteFrameFormat = "Attack__%03d.png";
@@ -198,7 +201,7 @@ void Ninja::SetState(NINJA_STATE state) {
 	}
 }
 
-void Ninja::SetNinjaDirection(NINJA_DIRECTION dir) {
+void Ninja::setNinjaDirection(NINJA_DIRECTION dir) {
 	NINJA_DIRECTION prevDir = mDirection;
 	mDirection = dir;
 	if (prevDir != dir) {

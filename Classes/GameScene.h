@@ -1,28 +1,31 @@
 #pragma once
+#include "hud.h"
 
-class HelloWorld : public cocos2d::Layer
+class GameScene : public cocos2d::Layer
 {
 public:
-	HelloWorld();
-	virtual ~HelloWorld();
+	GameScene();
+	virtual ~GameScene();
 
 	static cocos2d::Scene* createScene();
     bool init() override;
     
-	void initUI();
 	void initKeyBoardEvents();
 	void loadSpriteSheets();
 	void loadBG();
 	void loadNinja();
+	void loadHUD();
 
-    // a selector callback
-    void menuCloseCallback(cocos2d::Ref* pSender);
-    
     // implement the "static create()" method manually
-    CREATE_FUNC(HelloWorld);
+    CREATE_FUNC(GameScene);
 	void update(float delta);
 private:
 	Ninja* mNinja;
+	HUD*	mHUD;
+
+	Layer* mGamelayer;
+	Layer* mHUDLayer;
+
 	cocos2d::Sprite* mBG;
 	bool mKeyPressed;
 	int mcurrentLevel;

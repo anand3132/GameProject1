@@ -1,5 +1,4 @@
 #pragma once
-
 #include <cocos2d.h>
 
 namespace NinjaUtil 
@@ -26,11 +25,10 @@ public:
 		UP,
 		DOWN
 	};
-    static Ninja* createNinja(float scale = 1.0f, cocos2d::Vec2 pos = cocos2d::Vec2::ZERO);
-
 	Ninja();
 	virtual ~Ninja();
 
+    static Ninja* createNinja(float scale = 1.0f, cocos2d::Vec2 pos = cocos2d::Vec2::ZERO);
     bool initNinja(float scale, cocos2d::Vec2 pos);
 	void update(float delta);
 
@@ -40,7 +38,7 @@ public:
 	void playCrawl();
 	void playJump();
 	void jumpAttack();
-	void SetNinjaDirection(NINJA_DIRECTION dir);
+	void setNinjaDirection(NINJA_DIRECTION dir);
 	//NINJA_DIRECTION GetNinjaDirection();
 protected:
 	void OnStateChange(NINJA_STATE prevState, NINJA_STATE curState);

@@ -1,4 +1,4 @@
-#include "GameEngine.h"
+#include "GameInclude.h"
 #include "MainMenu.h"
 USING_NS_CC;
 MainMenu::MainMenu()
@@ -65,7 +65,7 @@ bool MainMenu::init()
 		case cocos2d::ui::Widget::TouchEventType::ENDED:
 		{
 			cocos2d::log("Button pressed");
-			Director::getInstance()->replaceScene(HelloWorld::createScene());
+			Director::getInstance()->replaceScene(GameScene::createScene());
 		}
 			break;
 		case cocos2d::ui::Widget::TouchEventType::CANCELED:

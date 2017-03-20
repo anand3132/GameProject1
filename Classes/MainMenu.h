@@ -7,7 +7,7 @@ public:
 	virtual ~MainMenu();
 
 	static cocos2d::Scene* createScene();
-	virtual bool init();
+	bool init() override;
 	void menuCloseCallback(cocos2d::Ref* pSender);
 //	void menuTouchEvent(Ref* pSender, ui::Widget::TouchEventType type);
 	CREATE_FUNC(MainMenu);
