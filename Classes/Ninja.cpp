@@ -39,6 +39,15 @@ Ninja* Ninja::createNinja(float scale, cocos2d::Vec2 pos)
 	CC_SAFE_DELETE(ninja);
 	return nullptr;
 }
+void Ninja::loadSpriteSheets()
+{
+	auto spriteCache = cocos2d::SpriteFrameCache::getInstance();
+	spriteCache->addSpriteFramesWithFile("sprites/HD/ninja-0.plist");
+	spriteCache->addSpriteFramesWithFile("sprites/HD/ninja-1.plist");
+	spriteCache->addSpriteFramesWithFile("sprites/HD/ninja-2.plist");
+	spriteCache->addSpriteFramesWithFile("sprites/HD/ninja-3.plist");
+	spriteCache->addSpriteFramesWithFile("sprites/HD/ninja-3.plist");
+}
 
 // on "init" you need to initialize your instance
 bool Ninja::initNinja(float scale, cocos2d::Vec2 pos)
@@ -50,7 +59,7 @@ bool Ninja::initNinja(float scale, cocos2d::Vec2 pos)
 
 	mCurrentFrame = 0;
 	mElapsedSinceLastFrame = 0.0f;
-
+	loadSpriteSheets();
 	//setCurrentAnimationFrame(0);
 	setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
 	setNinjaDirection(RIGHT);

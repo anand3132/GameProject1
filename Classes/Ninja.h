@@ -31,6 +31,7 @@ public:
     static Ninja* createNinja(float scale = 1.0f, cocos2d::Vec2 pos = cocos2d::Vec2::ZERO);
     bool initNinja(float scale, cocos2d::Vec2 pos);
 	void update(float delta);
+	void loadSpriteSheets();
 
 	void playIdle(NINJA_DIRECTION dir);
 	void playRun(NINJA_DIRECTION dir);

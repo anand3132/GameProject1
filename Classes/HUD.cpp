@@ -68,6 +68,7 @@ bool HUD::HUDMessege(const std::string& _message)
 
 	return true;
 }
+
 void HUD::menuCloseCallback(Ref* pSender) {
 	//Close the cocos2d-x game scene and quit the application
 	Director::getInstance()->end();

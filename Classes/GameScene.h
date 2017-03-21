@@ -18,7 +18,6 @@ public:
 
     // implement the "static create()" method manually
     CREATE_FUNC(GameScene);
-	void update(float delta);
 private:
 	Ninja* mNinja;
 	HUD*	mHUD;

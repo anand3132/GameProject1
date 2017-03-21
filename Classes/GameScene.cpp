@@ -75,20 +75,14 @@ void GameScene::loadNinja() {
 }
 
 void GameScene::loadSpriteSheets() {
-	// atlas/Sprite plist loading
 	auto spriteCache = cocos2d::SpriteFrameCache::getInstance();
-	spriteCache->addSpriteFramesWithFile("sprites/HD/ninja-0.plist");
-	spriteCache->addSpriteFramesWithFile("sprites/HD/ninja-1.plist");
-	spriteCache->addSpriteFramesWithFile("sprites/HD/ninja-2.plist");
-	spriteCache->addSpriteFramesWithFile("sprites/HD/ninja-3.plist");
-	spriteCache->addSpriteFramesWithFile("sprites/HD/ninja-3.plist");
-
-	spriteCache->addSpriteFramesWithFile("sprites/HD/enemy-0.plist");
-	spriteCache->addSpriteFramesWithFile("sprites/HD/enemy-1.plist");
-	spriteCache->addSpriteFramesWithFile("sprites/HD/enemy-2.plist");
-	spriteCache->addSpriteFramesWithFile("sprites/HD/enemy-3.plist");
-	spriteCache->addSpriteFramesWithFile("sprites/HD/enemy-4.plist");
 	spriteCache->addSpriteFramesWithFile("sprites/HD/BG-0.plist");
+
+	//spriteCache->addSpriteFramesWithFile("sprites/HD/enemy-0.plist");
+	//spriteCache->addSpriteFramesWithFile("sprites/HD/enemy-1.plist");
+	//spriteCache->addSpriteFramesWithFile("sprites/HD/enemy-2.plist");
+	//spriteCache->addSpriteFramesWithFile("sprites/HD/enemy-3.plist");
+	//spriteCache->addSpriteFramesWithFile("sprites/HD/enemy-4.plist");
 }
 
 void GameScene::initKeyBoardEvents() {
@@ -172,7 +166,4 @@ void GameScene::initKeyBoardEvents() {
 		}
 	};
 	this->_eventDispatcher->addEventListenerWithSceneGraphPriority(eventListener, this);
-}
-
-void GameScene::update(float delta) {
 }
