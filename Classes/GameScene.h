@@ -11,10 +11,12 @@ public:
     bool init() override;
     
 	void initKeyBoardEvents();
-	void loadSpriteSheets();
 	void loadBG();
 	void loadNinja();
+	void setCamFollow(Node * cNode);
+	void setCamFollow();
 	void loadHUD();
+	void loadLevel();
 
     // implement the "static create()" method manually
     CREATE_FUNC(GameScene);

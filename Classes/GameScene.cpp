@@ -1,4 +1,6 @@
 #include "GameInclude.h"
+#include "json/document.h"
+#include "json/writer.h"
 #include "GameScene.h"
 USING_NS_CC;
 
@@ -34,11 +36,12 @@ bool GameScene::init() {
 	mHUDLayer = Layer::create();
 	addChild(mGamelayer);
 	addChild(mHUDLayer);
+	loadLevel();
 
-	loadSpriteSheets();
-	loadHUD();
-	loadBG();
-	loadNinja();
+	//loadHUD();
+	//loadBG();
+	//loadNinja();
+	//setCamFollow(mNinja);
 	initKeyBoardEvents();
 	return true;
 }
@@ -52,6 +55,7 @@ void GameScene::loadBG() {
 	auto spriteCache = cocos2d::SpriteFrameCache::getInstance();
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 	//Add background
+	spriteCache->addSpriteFramesWithFile("sprites/HD/BG-0.plist");
 	mBG = Sprite::createWithSpriteFrame(spriteCache->getSpriteFrameByName("Background1.png"));
 	// Calculate the ratio needed to scale the BG to full screen (height wise).
 	float ratio = visibleSize.height / mBG->getContentSize().height;
@@ -67,22 +71,26 @@ void GameScene::loadNinja() {
 	mNinja = Ninja::createNinja(0.2f, Vec2(visibleSize.width*0.1f, visibleSize.height*0.12f));
 	mNinja->retain();	// We retain this so that we can remove this object from the scene with out getting destroyed.
 	mGamelayer->addChild(mNinja);
-
+	
+}
+void GameScene::setCamFollow(Node* cNode) {
+	auto screenSz = Director::getInstance()->getVisibleSize();
 	// follow cam
 	auto bgRect = Rect(Vec2::ZERO, mBG->getBoundingBox().size);
-	auto screenSz = Director::getInstance()->getVisibleSize();
-	mGamelayer->runAction(Follow::createWithOffset(mNinja, screenSz.width*0.1f, 0, bgRect));
+	mGamelayer->runAction(Follow::createWithOffset(cNode, screenSz.width*0.1f, 0, bgRect));
 }
-
-void GameScene::loadSpriteSheets() {
+void GameScene::loadLevel() {
 	auto spriteCache = cocos2d::SpriteFrameCache::getInstance();
-	spriteCache->addSpriteFramesWithFile("sprites/HD/BG-0.plist");
-
-	//spriteCache->addSpriteFramesWithFile("sprites/HD/enemy-0.plist");
-	//spriteCache->addSpriteFramesWithFile("sprites/HD/enemy-1.plist");
-	//spriteCache->addSpriteFramesWithFile("sprites/HD/enemy-2.plist");
-	//spriteCache->addSpriteFramesWithFile("sprites/HD/enemy-3.plist");
-	//spriteCache->addSpriteFramesWithFile("sprites/HD/enemy-4.plist");
+	auto visibleSize = Director::getInstance()->getVisibleSize();
+	//load Level Map
+	auto *map = TMXTiledMap::create("Level1.tmx");
+	float ratio = visibleSize.height / map->getContentSize().height;
+	//map->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
+	//map->setPosition(Vec2::ZERO);
+	//map->setScale(ratio);
+	//map->setScale(0.08f);
+	mGamelayer->addChild(map);
+	
 }
 
 void GameScene::initKeyBoardEvents() {

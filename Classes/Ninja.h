@@ -32,6 +32,7 @@ public:
     bool initNinja(float scale, cocos2d::Vec2 pos);
 	void update(float delta);
 	void loadSpriteSheets();
+	void setCameraProperty();
 
 	void playIdle(NINJA_DIRECTION dir);
 	void playRun(NINJA_DIRECTION dir);
