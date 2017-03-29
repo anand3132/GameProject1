@@ -122,6 +122,13 @@ if ( WIN32 )
 )
 endif( WIN32 )
 
+if ( MACOSX )
+  include_directories(
+  ${COCOS2D_ROOT}/external/glfw3/include/mac
+  ${COCOS2D_ROOT}/external/
+  )
+endif ( MACOSX )
+
 set(GAME_SRC
   Classes/AppDelegate.cpp
   Classes/MainMenu.cpp
