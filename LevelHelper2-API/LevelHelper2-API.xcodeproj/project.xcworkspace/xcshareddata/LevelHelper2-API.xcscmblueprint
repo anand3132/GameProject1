@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "CBB703E3F0ECD64D749544F343436115202BDB31",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "CBB703E3F0ECD64D749544F343436115202BDB31" : 9223372036854775807,
+    "3A861DEA7692355471635F152E0101817378AB61" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "9083ABA3-9780-4578-966C-349E1CB7855E",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "CBB703E3F0ECD64D749544F343436115202BDB31" : "GameProject1\/",
+    "3A861DEA7692355471635F152E0101817378AB61" : "Cocos2d-X.v3.3.0"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "LevelHelper2-API",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "LevelHelper2-API\/LevelHelper2-API.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:vladubogdan\/LevelHelper2-Cocos2d-X.v3.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3A861DEA7692355471635F152E0101817378AB61"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/anand3132\/GameProject1.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CBB703E3F0ECD64D749544F343436115202BDB31"
+    }
+  ]
+}
